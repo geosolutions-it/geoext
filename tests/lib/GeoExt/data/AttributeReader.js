@@ -19,7 +19,14 @@ var doc = (new OpenLayers.Format.XML).read(
           '<xsd:element maxOccurs="1" minOccurs="0" name="STATE_ABBR" nillable="true" type="xsd:string"/>' +
           '<xsd:element maxOccurs="1" minOccurs="0" name="LAND_KM" nillable="true" type="xsd:double"/>' +
           '<xsd:element maxOccurs="1" minOccurs="0" name="WATER_KM" nillable="true" type="xsd:double"/>' +
-          '<xsd:element maxOccurs="1" minOccurs="0" name="PERSONS" nillable="true" type="xsd:double"/>' +
+          '<xsd:element maxOccurs="1" minOccurs="0" name="PERSONS" nillable="true" type="xsd:double">' +
+            '<xsd:annotation>' +
+                '<xsd:appinfo>{"title":{"en":"Population"}}</xsd:appinfo>' +
+                '<xsd:documentation xml:lang="en">' +
+                  'Number of persons living in the state' +
+                '</xsd:documentation>' +
+            '</xsd:annotation>' +
+          '</xsd:element>' +
           '<xsd:element maxOccurs="1" minOccurs="0" name="FAMILIES" nillable="true" type="xsd:double"/>' +
           '<xsd:element maxOccurs="1" minOccurs="0" name="HOUSHOLD" nillable="true" type="xsd:double"/>' +
           '<xsd:element maxOccurs="1" minOccurs="0" name="MALE" nillable="true" type="xsd:double"/>' +
@@ -43,3 +50,13 @@ var doc = (new OpenLayers.Format.XML).read(
 '</xsd:schema>'
 );
 
+var doc2 = (new OpenLayers.Format.XML).read(
+    '<?xml version="1.0" encoding="UTF-8"?>' +
+    '<ows:ExceptionReport version="1.0.0"' +
+    '  xsi:schemaLocation="http://www.opengis.net/ows http://localhost:8080/geoserver/schemas/ows/1.0.0/owsExceptionReport.xsd"' +
+    '  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ows="http://www.opengis.net/ows">' +
+    '  <ows:Exception exceptionCode="NoApplicableCode">' +
+    '    <ows:ExceptionText>Could not find type: {http://geonode.org/}_map_4_annotations</ows:ExceptionText>' +
+    '  </ows:Exception>' +
+    '</ows:ExceptionReport>'
+);
